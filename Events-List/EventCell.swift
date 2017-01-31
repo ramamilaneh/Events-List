@@ -28,10 +28,11 @@ class EventCell: UICollectionViewCell {
                     self.favoriteMark.image = UIImage(named: "starred")?.tint(color: UIColor.red)
                 }
                 self.updateTextLabels(with: self.event!)
-                
             }
         }
     }
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A280B28E1E40F309000B32A0 /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */; };
+		A280B2901E41055C000B32A0 /* JohannViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280B28F1E41055C000B32A0 /* JohannViewController.swift */; };
 		A28830DA1E3A6E0100768AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28830D91E3A6E0100768AB5 /* AppDelegate.swift */; };
 		A28830DC1E3A6E0100768AB5 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */; };
 		A28830E11E3A6E0100768AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28830E01E3A6E0100768AB5 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
+		A280B28F1E41055C000B32A0 /* JohannViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JohannViewController.swift; sourceTree = "<group>"; };
 		A28830D61E3A6E0100768AB5 /* Events-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Events-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28830D91E3A6E0100768AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			children = (
 				A28830D91E3A6E0100768AB5 /* AppDelegate.swift */,
 				A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */,
+				A280B28F1E41055C000B32A0 /* JohannViewController.swift */,
 				A28830E01E3A6E0100768AB5 /* Assets.xcassets */,
 				A28830E21E3A6E0100768AB5 /* LaunchScreen.storyboard */,
 				A28830E51E3A6E0100768AB5 /* Info.plist */,
@@ -78,6 +83,7 @@
 				A28830F31E3BCBD900768AB5 /* EventCell.swift */,
 				A28830F51E3BD7BC00768AB5 /* Extensions.swift */,
 				A28830F71E3D050800768AB5 /* CustomTabbarController.swift */,
+				A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */,
 			);
 			path = "Events-List";
 			sourceTree = "<group>";
@@ -155,10 +161,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A28830EE1E3BAC6400768AB5 /* Event.swift in Sources */,
+				A280B2901E41055C000B32A0 /* JohannViewController.swift in Sources */,
 				A28830DC1E3A6E0100768AB5 /* EventsViewController.swift in Sources */,
 				A28830F81E3D050800768AB5 /* CustomTabbarController.swift in Sources */,
 				A28830DA1E3A6E0100768AB5 /* AppDelegate.swift in Sources */,
 				A28830EC1E3A6E2700768AB5 /* APIClient.swift in Sources */,
+				A280B28E1E40F309000B32A0 /* FavoriteEventsViewController.swift in Sources */,
 				A28830F21E3BC2C600768AB5 /* EventsDataStore.swift in Sources */,
 				A28830F41E3BCBD900768AB5 /* EventCell.swift in Sources */,
 				A28830F61E3BD7BC00768AB5 /* Extensions.swift in Sources */,
@@ -316,6 +324,7 @@
 				A28830EA1E3A6E0100768AB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

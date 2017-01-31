@@ -33,7 +33,8 @@ class APIClient {
                     if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
                         // To handle when there is misspelling in the text or the topic
                         if json["results"] != nil {
-                            completion(json["results"] as! [[String : Any]],true)
+                            let results = json["results"] as! [[String : Any]]
+                            completion(results,true)
                         }else{
                             completion([], false)
                         }

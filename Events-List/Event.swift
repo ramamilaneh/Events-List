@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Event {
+struct Event: Equatable {
     
     let name: String
     let date: String
@@ -46,6 +46,10 @@ struct Event {
         self.yesRSVP = yesRSVP
         self.date = date
         self.location = locationName
+    }
+    
+    static func ==(lhs:Event, rhs:Event) -> Bool { // Implement Equatable
+        return lhs.id == rhs.id
     }
 }
 
