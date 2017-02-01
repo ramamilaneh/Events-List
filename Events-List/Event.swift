@@ -19,6 +19,7 @@ struct Event: Equatable {
     var isFavorite = false
     let id: String
     
+    // Initilize the Event from the Json Dic
     init(eventDic: [String:Any]) {
         
         let id = eventDic["id"] as? String ?? ""
@@ -53,6 +54,7 @@ struct Event: Equatable {
     }
 }
 
+// Extension to convert the date from millisecods to date format
 extension Int {
     
     func dateFromMilliseconds() -> String {

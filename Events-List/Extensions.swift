@@ -10,6 +10,7 @@ import UIKit
 
 extension UIView {
     
+    // Function to add contrains to view with constant
     func anchor(_ top: NSLayoutYAxisAnchor? = nil, left: NSLayoutXAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, right: NSLayoutXAxisAnchor? = nil, topConstant: CGFloat = 0, leftConstant: CGFloat = 0, bottomConstant: CGFloat = 0, rightConstant: CGFloat = 0, widthConstant: CGFloat = 0, heightConstant: CGFloat = 0) {
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +50,7 @@ extension UIView {
 
 extension UIImage {
     
+    // Function to give any icon or image a tint color
     func tint(color: UIColor) -> UIImage? {
         
         let drawRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)

@@ -17,7 +17,8 @@ class EventsDataStore {
     var events: [Event] = []
     var favoriteEvents: [Event] = []
     var favoriteEventsID = [FavoriteEvents]()
-
+    
+    // Make an API call to get the events info
     func createEvents(completionHandler: @escaping (Bool) -> ()) {
         APIClient.getUpcomingEvents { (eventsArray, success) in
             if eventsArray.count != 0 && success == true {
@@ -54,20 +55,22 @@ class EventsDataStore {
             }
         }
     }
+    
+    // Add Favorite Event ID to Core Data
     func addFavoriteEventToCoreData(with id:String) {
+        
         let managedContext = self.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "FavoriteEvents", in: managedContext)
         if let unwrappedEntity = entity {
             let favoriteEvent = NSManagedObject(entity: unwrappedEntity, insertInto: managedContext) as! FavoriteEvents
             favoriteEvent.id = id
-            do {
-                try managedContext.save()
-            }catch {}
         }
         saveContext()
     }
     
+    // Delete Favorite Event ID from Core Data
     func deleteFavoriteEventFromCoreData(with id: String) {
+        
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<FavoriteEvents> = FavoriteEvents.fetchRequest()
         if let result = try? managedContext.fetch(fetchRequest) {
@@ -76,33 +79,24 @@ class EventsDataStore {
                     managedContext.delete(object)
                 }
             }
-            do {
-                try managedContext.save()
-            }catch let error {
-                print(error.localizedDescription)
-            }
         }
         saveContext()
     }
-
+    
+    // Delete all the entity from Core Data
     func emptyCoreData() {
+        
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<FavoriteEvents> = FavoriteEvents.fetchRequest()
         if let result = try? managedContext.fetch(fetchRequest) {
             for object in result {
-                
                 managedContext.delete(object)
-                
-            }
-            do {
-                try managedContext.save()
-            }catch let error {
-                print(error.localizedDescription)
             }
         }
-    
+        
     }
-
+    
+    // Fetching data and save it in Favorite events ID array
     func fetchData(){
         
         let managedContext = self.persistentContainer.viewContext
@@ -113,6 +107,6 @@ class EventsDataStore {
             print(error.localizedDescription)
         }
     }
-
+    
     
 }

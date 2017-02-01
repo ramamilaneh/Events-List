@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A280B28E1E40F309000B32A0 /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */; };
-		A280B2901E41055C000B32A0 /* JohannViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A280B28F1E41055C000B32A0 /* JohannViewController.swift */; };
 		A28830DA1E3A6E0100768AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28830D91E3A6E0100768AB5 /* AppDelegate.swift */; };
 		A28830DC1E3A6E0100768AB5 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */; };
 		A28830E11E3A6E0100768AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28830E01E3A6E0100768AB5 /* Assets.xcassets */; };
@@ -24,7 +23,6 @@
 
 /* Begin PBXFileReference section */
 		A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
-		A280B28F1E41055C000B32A0 /* JohannViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JohannViewController.swift; sourceTree = "<group>"; };
 		A28830D61E3A6E0100768AB5 /* Events-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Events-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28830D91E3A6E0100768AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -51,10 +49,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A280B2911E4218A1000B32A0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */,
+				A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */,
+				A28830F71E3D050800768AB5 /* CustomTabbarController.swift */,
+				A28830D91E3A6E0100768AB5 /* AppDelegate.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A280B2921E4218CA000B32A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A28830EB1E3A6E2700768AB5 /* APIClient.swift */,
+				A28830ED1E3BAC6400768AB5 /* Event.swift */,
+				A28830F11E3BC2C600768AB5 /* EventsDataStore.swift */,
+				A28830E21E3A6E0100768AB5 /* LaunchScreen.storyboard */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A280B2931E4218D9000B32A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A28830F31E3BCBD900768AB5 /* EventCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A280B2941E4218E9000B32A0 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				A28830F51E3BD7BC00768AB5 /* Extensions.swift */,
+				A28830FB1E3D1E2300768AB5 /* FavoriteModel.xcdatamodeld */,
+				A28830E51E3A6E0100768AB5 /* Info.plist */,
+				A28830E01E3A6E0100768AB5 /* Assets.xcassets */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
 		A28830CD1E3A6E0100768AB5 = {
 			isa = PBXGroup;
 			children = (
-				A28830FB1E3D1E2300768AB5 /* FavoriteModel.xcdatamodeld */,
 				A28830D81E3A6E0100768AB5 /* Events-List */,
 				A28830D71E3A6E0100768AB5 /* Products */,
 			);
@@ -71,19 +109,10 @@
 		A28830D81E3A6E0100768AB5 /* Events-List */ = {
 			isa = PBXGroup;
 			children = (
-				A28830D91E3A6E0100768AB5 /* AppDelegate.swift */,
-				A28830DB1E3A6E0100768AB5 /* EventsViewController.swift */,
-				A280B28F1E41055C000B32A0 /* JohannViewController.swift */,
-				A28830E01E3A6E0100768AB5 /* Assets.xcassets */,
-				A28830E21E3A6E0100768AB5 /* LaunchScreen.storyboard */,
-				A28830E51E3A6E0100768AB5 /* Info.plist */,
-				A28830EB1E3A6E2700768AB5 /* APIClient.swift */,
-				A28830ED1E3BAC6400768AB5 /* Event.swift */,
-				A28830F11E3BC2C600768AB5 /* EventsDataStore.swift */,
-				A28830F31E3BCBD900768AB5 /* EventCell.swift */,
-				A28830F51E3BD7BC00768AB5 /* Extensions.swift */,
-				A28830F71E3D050800768AB5 /* CustomTabbarController.swift */,
-				A280B28D1E40F309000B32A0 /* FavoriteEventsViewController.swift */,
+				A280B2911E4218A1000B32A0 /* Controller */,
+				A280B2921E4218CA000B32A0 /* Model */,
+				A280B2931E4218D9000B32A0 /* View */,
+				A280B2941E4218E9000B32A0 /* Supporting */,
 			);
 			path = "Events-List";
 			sourceTree = "<group>";
@@ -161,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A28830EE1E3BAC6400768AB5 /* Event.swift in Sources */,
-				A280B2901E41055C000B32A0 /* JohannViewController.swift in Sources */,
 				A28830DC1E3A6E0100768AB5 /* EventsViewController.swift in Sources */,
 				A28830F81E3D050800768AB5 /* CustomTabbarController.swift in Sources */,
 				A28830DA1E3A6E0100768AB5 /* AppDelegate.swift in Sources */,
@@ -335,7 +363,8 @@
 				A28830FC1E3D1E2300768AB5 /* FavoriteModel.xcdatamodel */,
 			);
 			currentVersion = A28830FC1E3D1E2300768AB5 /* FavoriteModel.xcdatamodel */;
-			path = FavoriteModel.xcdatamodeld;
+			name = FavoriteModel.xcdatamodeld;
+			path = ../FavoriteModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

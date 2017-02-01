@@ -14,10 +14,17 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
     let store = EventsDataStore.sharedInstance
     private let cellId = "eventCell"
     var collectionView: UICollectionView!
-    
-    
+    var activityIndicatorView: UIActivityIndicatorView!
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.title = "Events"
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicatorView.frame = CGRect(x: self.view.center.x - 25 , y: self.view.center.y - 70, width: 50, height: 50)
+        activityIndicatorView.backgroundColor = UIColor(white: 0.9, alpha: 0.3)
+        activityIndicatorView.layer.cornerRadius = 10
+        activityIndicatorView.clipsToBounds = true
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.itemSize = CGSize(width: self.view.frame.width, height: 0.45*self.view.frame.height)
@@ -28,17 +35,20 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
-        //store.emptyCoreData()
+        collectionView.addSubview(activityIndicatorView)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
-        store.fetchData()
+        self.activityIndicatorView.startAnimating()
+        self.store.fetchData()
         self.store.createEvents { (success) in
             if success {
                 self.ckeckFavoriteEvents()
                 DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
                     self.collectionView?.reloadData()
                 }
             }
@@ -47,21 +57,7 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        store.fetchData()
-//        self.store.createEvents { (success) in
-//            if success {
-//                self.ckeckFavoriteEvents()
-//                OperationQueue.main.addOperation {
-//                    self.collectionView?.reloadData()
-//                }
-//            }
-//        }
-    }
-    
-    
-    
+    // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return store.events.count
     }
@@ -81,7 +77,6 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         let id = self.store.events[indexPath.item].id
         if store.events[indexPath.item].isFavorite == true {
             store.events[indexPath.item].isFavorite = false
-            //store.favoriteEvents.remove(at: in)
             DispatchQueue.main.async {
                 cell.favoriteMark.image = UIImage(named: "unstarred")?.tint(color: UIColor.red)
             }
@@ -97,7 +92,7 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
-       
+    // Check if there is any matching between the favorite events ID from Core Data and the Events
     func ckeckFavoriteEvents() {
         
         self.store.favoriteEvents.removeAll()

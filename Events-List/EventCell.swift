@@ -53,6 +53,7 @@ class EventCell: UICollectionViewCell {
         self.addSubview(yesRSVPLabel)
         self.addSubview(favoriteMark)
         
+        
         self.eventNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0.05*self.frame.height, leftConstant: 25, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 60)
         self.eventNameLabel.font = labelFont
         self.eventNameLabel.numberOfLines = 0
@@ -64,12 +65,12 @@ class EventCell: UICollectionViewCell {
         self.eventAddressLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0.45*self.frame.height, leftConstant: 25, bottomConstant: 0, rightConstant: 10, widthConstant:  0, heightConstant: 60)
         self.eventAddressLabel.numberOfLines = 0
         
-        
         let logoLabel = UILabel()
         self.addSubview(logoLabel)
         logoLabel.text = "👤"
         logoLabel.font = UIFont.systemFont(ofSize: 14)
         logoLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0.67*self.frame.height, leftConstant: 25, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
+        
         self.eventgroupNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0.65*self.frame.height, leftConstant: 55, bottomConstant: 0, rightConstant: 25, widthConstant: 0, heightConstant: 50)
         self.eventgroupNameLabel.numberOfLines = 0
         self.eventgroupNameLabel.lineBreakMode = .byWordWrapping
@@ -83,23 +84,24 @@ class EventCell: UICollectionViewCell {
         
     }
     
-        func updateTextLabels(with event:Event) {
-            
-            self.eventNameLabel.text = event.name
-            
-            self.eventTimeLabel.attributedText = NSMutableAttributedString(string: "🕖   \(event.date)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
-            
-            let attributedText = NSMutableAttributedString(string: "📍  \(event.location)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
-            attributedText.append(NSAttributedString(string: "\n\t\(event.address)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold), NSForegroundColorAttributeName: color]))
-            self.eventAddressLabel.attributedText = attributedText
-            
-            self.eventgroupNameLabel.attributedText = NSMutableAttributedString(string: " \(event.groupName)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
-            
-            let peopleAttribultedText =  NSMutableAttributedString(string: "👥", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
-            peopleAttribultedText.append(NSMutableAttributedString(string: "   \(event.yesRSVP) people are going ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color]))
-            self.yesRSVPLabel.attributedText = peopleAttribultedText
-            
-            
-            
-        }
+    // Update the label's Text with the event info
+    func updateTextLabels(with event:Event) {
+        
+        self.eventNameLabel.text = event.name
+        
+        self.eventTimeLabel.attributedText = NSMutableAttributedString(string: "🕖   \(event.date)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
+        
+        let attributedText = NSMutableAttributedString(string: "📍  \(event.location)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
+        attributedText.append(NSAttributedString(string: "\n\t\(event.address)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold), NSForegroundColorAttributeName: color]))
+        self.eventAddressLabel.attributedText = attributedText
+        
+        self.eventgroupNameLabel.attributedText = NSMutableAttributedString(string: " \(event.groupName)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
+        
+        let peopleAttribultedText =  NSMutableAttributedString(string: "👥", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold), NSForegroundColorAttributeName: color])
+        peopleAttribultedText.append(NSMutableAttributedString(string: "   \(event.yesRSVP) people are going ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold), NSForegroundColorAttributeName: color]))
+        self.yesRSVPLabel.attributedText = peopleAttribultedText
+        
+        
+        
+    }
 }

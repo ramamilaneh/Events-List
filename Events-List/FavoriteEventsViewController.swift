@@ -16,9 +16,13 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
     let store = EventsDataStore.sharedInstance
     var collectionView: UICollectionView!
     private let cellId = "favoriteCell"
-    
+    var activityIndicatorView: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        self.title = "Favorites"
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.itemSize = CGSize(width: self.view.frame.width, height: 0.45*self.view.frame.height)
@@ -29,18 +33,21 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.backgroundView = activityIndicatorView
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
-//        self.store.fetchData()
-//        self.ckeckFavoriteEvents()
-//        collectionView.reloadData()
+        self.activityIndicatorView.startAnimating()
         store.fetchData()
         self.store.createEvents { (success) in
             if success {
                 self.ckeckFavoriteEvents()
-                DispatchQueue.main.async {                 
+                print(self.store.favoriteEvents.count)
+                DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
                     self.collectionView?.reloadData()
                 }
             }
@@ -49,24 +56,9 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-     //   self.ckeckFavoriteEvents()
-//        store.fetchData()
-//        self.store.createEvents { (success) in
-//            if success {
-//                self.ckeckFavoriteEvents()
-//                OperationQueue.main.addOperation {
-//                    self.collectionView?.reloadData()
-//                }
-//            }
-//        }
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
    

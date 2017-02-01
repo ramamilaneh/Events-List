@@ -11,11 +11,10 @@ import UIKit
 
 class APIClient {
     
-    
+    // API call to  get the Event info
     class func getUpcomingEvents(withIn time: Time = .week, zipCode: String = "10012",text: String = "", topic: String = "", with completion: @escaping ([[String:Any]],_ success: Bool) -> ()) {
         
         let parameter = APIClient.configureURLString(with: zipCode, text: text, topic: topic, time: time)
-        
         let urlSession = URLSession(configuration: .default)
         let url = URL(string: "\(Constant.basicURLString)?\(parameter)")
         guard let unwrappedURL = url else { fatalError("Invalid URL") }
@@ -56,12 +55,12 @@ class APIClient {
     }
     
     // Function to handle the different choices of searching
-   static func configureURLString(with zipCode: String, text: String, topic: String, time: Time) -> String {
+    static func configureURLString(with zipCode: String, text: String, topic: String, time: Time) -> String {
         
         var parameter = ""
         switch (zipCode,text,topic) {
         case ("10012","",""):
-             parameter = ["key=\(Constant.key)","time=\(time.rawValue)","zip=10012"].joined(separator: "&")
+            parameter = ["key=\(Constant.key)","time=\(time.rawValue)","zip=10012"].joined(separator: "&")
         case ("10012",text,""):
             parameter = ["key=\(Constant.key)","time=\(time.rawValue)","text=\(text)"].joined(separator: "&")
         case ("10012","",topic):
@@ -77,7 +76,7 @@ class APIClient {
         default:
             break
         }
-
+        
         return parameter
     }
     
