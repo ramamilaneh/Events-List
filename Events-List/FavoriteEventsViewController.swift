@@ -23,7 +23,7 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         layout.minimumLineSpacing = 1
         layout.itemSize = CGSize(width: self.view.frame.width, height: 0.45*self.view.frame.height)
         self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        self.collectionView.backgroundColor = UIColor.red
+        self.collectionView.backgroundColor = UIColor.white
         self.view.addSubview(collectionView)
         self.collectionView.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         collectionView.delegate = self
@@ -33,20 +33,18 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.store.fetchData()
-        self.ckeckFavoriteEvents()
-        collectionView.reloadData()
-//        store.fetchData()
-//        self.store.createEvents { (success) in
-//            if success {
-//                self.ckeckFavoriteEvents()
-//                print("😼 \(self.store.favoriteEvents)")
-//
-//                OperationQueue.main.addOperation {
-//                    self.collectionView?.reloadData()
-//                }
-//            }
-//        }
+//        self.store.fetchData()
+//        self.ckeckFavoriteEvents()
+//        collectionView.reloadData()
+        store.fetchData()
+        self.store.createEvents { (success) in
+            if success {
+                self.ckeckFavoriteEvents()
+                DispatchQueue.main.async {                 
+                    self.collectionView?.reloadData()
+                }
+            }
+        }
         
         
     }
