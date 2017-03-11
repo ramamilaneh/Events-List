@@ -20,6 +20,14 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         
         super.viewDidLoad()
         self.title = "Events"
+        setupViews()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
+    }
+    
+    func setupViews() {
+        
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityIndicatorView.frame = CGRect(x: self.view.center.x - 25 , y: self.view.center.y - 70, width: 50, height: 50)
         activityIndicatorView.backgroundColor = UIColor(white: 0.9, alpha: 0.3)
@@ -32,10 +40,8 @@ class EventsViewController:  UIViewController, UICollectionViewDelegate, UIColle
         self.collectionView.backgroundColor = UIColor.white
         self.view.addSubview(collectionView)
         self.collectionView.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.addSubview(activityIndicatorView)
+
     }
     
     

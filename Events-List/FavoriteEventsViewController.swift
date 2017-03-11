@@ -22,7 +22,19 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         
         super.viewDidLoad()
         self.title = "Favorites"
+        setupViews()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
+    }
+    
+    func setupViews() {
+        
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicatorView.frame = CGRect(x: self.view.center.x - 25 , y: self.view.center.y - 70, width: 50, height: 50)
+        activityIndicatorView.backgroundColor = UIColor(white: 0.9, alpha: 0.3)
+        activityIndicatorView.layer.cornerRadius = 10
+        activityIndicatorView.clipsToBounds = true
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 1
         layout.itemSize = CGSize(width: self.view.frame.width, height: 0.45*self.view.frame.height)
@@ -30,11 +42,8 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         self.collectionView.backgroundColor = UIColor.white
         self.view.addSubview(collectionView)
         self.collectionView.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundView = activityIndicatorView
-
+        collectionView.addSubview(activityIndicatorView)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +64,7 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
         
         
     }
-
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,6 +108,7 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate, 
     
     func ckeckFavoriteEvents() {
         
+        self.store.favoriteEvents.removeAll()
         for (index,event) in self.store.events.enumerated(){
             for eventID in self.store.favoriteEventsID {
                 if event.id == eventID.id {
